@@ -1,36 +1,34 @@
 class Solution {
+    boolean is_vowel(char c)
+    {
+        return(c=='a'||c=='e'||c=='i'||c=='o'||c=='u');
+    }
     public int maxVowels(String s, int k) {
-        int start=0;
-        int end=0;
         int n=s.length();
         int max_count=0;
         int count=0;
-        for(end=start;end<n;end++)
+        for(int i=0;i<k;i++)
         {
-            if(end-start+1<=k)
+            if(is_vowel(s.charAt(i)))
             {
-                if(s.charAt(end)=='a'||s.charAt(end)=='e'||s.charAt(end)=='i'||s.charAt(end)=='o'||s.charAt(end)=='u')
-                {
-                    count++;
-                }
-               
+                count++;
             }
-            else
-            {
-                if(s.charAt(start)=='a'||s.charAt(start)=='e'||s.charAt(start)=='i'||s.charAt(start)=='o'||s.charAt(start)=='u')
-                {
-                    count--;
-                }
-                    start++;
-                
-                if(s.charAt(end)=='a'||s.charAt(end)=='e'||s.charAt(end)=='i'||s.charAt(end)=='o'||s.charAt(end)=='u')
-                {
-                    count++;
-                }
-            }
-           max_count=Math.max(max_count,count);
+            max_count=count;
         }
-        // max_count=Math.max(max_count,count);
+        for(int i=k;i<n;i++)
+        {
+            if(is_vowel(s.charAt(i-k)))
+            {
+                count--;
+            }
+            if(is_vowel(s.charAt(i)))
+            {
+                count++;
+            }
+             max_count=Math.max(max_count,count);
+        }
+       
         return max_count;
+
     }
 }
