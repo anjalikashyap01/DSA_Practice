@@ -5,18 +5,20 @@ class Solution {
         int sum=0;
         int i=0;
         int j=0;
-        for(i=0;i<n;i++)
+        while(i<n)
         {
             sum=sum+nums[i];
             while(sum>=target)
             {
                 // sum=sum-nums[j];
-                min_length=Math.min(min_length,i-j+1);
+                int index=i-j+1;
+                min_length=Math.min(min_length,index);
                 sum=sum-nums[j];
                 j++;
                
                 
             }
+            i++;
             
         }
         if(min_length==Integer.MAX_VALUE)
