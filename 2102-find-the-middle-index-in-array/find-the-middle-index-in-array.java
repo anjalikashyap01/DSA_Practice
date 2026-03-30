@@ -3,21 +3,26 @@ class Solution {
         int n=nums.length;
         int left_sum;
         int right_sum;
+        int total=0;
         for(int i=0;i<n;i++)
         {
+           
+            total+=nums[i];
+        }
             left_sum=0;
             right_sum=0;
-            for(int j=0;j<i;j++)
+            for(int i=0;i<n;i++)
             {
-                left_sum+=nums[j];
-            }
-            for(int j=i+1;j<n;j++)
-            {
-                right_sum+=nums[j];
-            }
+           
+            right_sum=total-left_sum-nums[i];
+            
             if(left_sum==right_sum)
             {
                 return i;
+            }
+            else
+            {
+                left_sum+=nums[i];
             }
         }
         return -1;
