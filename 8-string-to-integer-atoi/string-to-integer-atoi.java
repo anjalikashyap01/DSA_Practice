@@ -1,42 +1,43 @@
 class Solution {
     public int myAtoi(String s) {
         s=s.trim();
+        int n=s.length();
+        long ans=0;
         if(s.length()==0)
         {
             return 0;
         }
-         int n=s.length();
-         int i=0;
-        int sign=1;
-        long ans=0;
         if(s.charAt(0)=='-')
         {
-            sign=-1;
-            i++;
+         return   checkAns(s,-1,1,ans);
         }
-        else if(s.charAt(0)=='+')
+        if(s.charAt(0)=='+')
         {
-            i++;
+          return   checkAns(s,1,1,ans);
         }
-        while(i<n)
+        return checkAns(s,1,0,ans);
+
+    }
+    public static int checkAns(String s,int sign,int i,long ans)
+    {
+        if(i>=s.length())
         {
-        if(s.charAt(i)<'0' || s.charAt(i)>'9')
+            return (int) ans*sign;
+        }
+        if(s.charAt(i)< '0' || s.charAt(i)>'9')
         {
-            break;
+            return (int) ans*sign;
         }
         int digit=s.charAt(i)-'0';
-      
         ans=ans*10+digit;
-        if(sign*ans > Integer.MAX_VALUE)
+        if(ans*sign>Integer.MAX_VALUE)
         {
             return Integer.MAX_VALUE;
         }
-        if(sign*ans < Integer.MIN_VALUE)
+        if(ans*sign<Integer.MIN_VALUE)
         {
             return Integer.MIN_VALUE;
         }
-        i++;
-        }
-        return (int) ans*sign;
+        return checkAns(s,sign,i+1,ans);
     }
 }
