@@ -1,10 +1,26 @@
 class Solution {
     public int mySqrt(int x) {
-        int i=0;
-        while((long)i*i<=x)
+        long low=1;
+        long high=x;
+        int ans=0;
+        if(x==0 || x==1)
         {
-            i++;
-        }
-        return i-1;
+        return x;
+         }
+         while(low<=high)
+         {
+            long mid=low+(high-low)/2;
+            if(mid*mid<=x)
+            {
+                ans=(int)mid;
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+
+         }
+         return ans;
     }
 }
